@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>✨ Habiba Ka Golden Birthday ✨ | Arsh Ki Taraf Se Pyaar Bhari Dua</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #ffb88c 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><polygon points="2,2 22,13 12,22 2,13" fill="%23ff6b6b" stroke="%23ffffff" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="%23ffd966"/></svg>') 12 5, auto;
+        }
+
+        /* Floating Sparkles Container */
+        .sparkle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            background: radial-gradient(circle, gold, #ffdd88);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 2s infinite;
+            box-shadow: 0 0 8px rgba(255,215,0,0.8);
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.5);}
+            50% { opacity: 1; transform: scale(1.2);}
+            100% { opacity: 0; transform: scale(0.5);}
+        }
+
+        /* Balloons Area */
+        .balloon-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .fancy-balloon {
+            position: absolute;
+            bottom: -120px;
+            width: 70px;
+            height: 90px;
+            border-radius: 50% 50% 45% 45%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7), rgba(0,0,0,0.1));
+            animation: floatGlide 12s ease-in infinite;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .fancy-balloon::before {
+            content: "✧";
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #573d2e;
+        }
+        .fancy-balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            width: 2px;
+            height: 32px;
+            background: #a5673f;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatGlide {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(15deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Grand Container */
+        .grand-container {
+            position: relative;
+            z-index: 20;
+            max-width: 1300px;
+            margin: 30px auto;
+            background: rgba(255, 248, 240, 0.96);
+            backdrop-filter: blur(8px);
+            border-radius: 80px;
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.3), 0 0 0 8px rgba(255,215,0,0.3), 0 0 0 12px #ffb347;
+            transition: all 0.3s;
+            overflow: hidden;
+            padding: 40px 35px 55px;
+        }
+
+        /* Hero Animation */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: 0 0 2px #ff8c94; }
+            100% { text-shadow: 0 0 15px #ff4d6d, 0 0 8px gold; }
+        }
+
+        .hero-section h1 {
+            font-size: 5rem;
+            background: linear-gradient(135deg, #e91e63, #ff7e5e, #f9d56e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .hero-section h2 {
+            font-size: 2.2rem;
+            color: #b22234;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+
+        .bday-date-gold {
+            display: inline-block;
+            background: linear-gradient(145deg, #ffb347, #ff8c42);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-top: 20px;
+            box-shadow: 0 12px 18px rgba(0,0,0,0.2);
+        }
+
+        .age-special {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            background: #ffecb3;
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #8b3c2c;
+        }
+
+        /* Respectful Hinglish Message */
+        .message-block {
+            background: #fff3e6;
+            padding: 35px 25px;
+            margin: 40px 0;
+            border-radius: 70px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            border: 2px dashed #ffb38b;
+            text-align: center;
+        }
+
+        .message-block p {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            font-weight: 500;
+            color: #4a2a2a;
+        }
+
+        .signature-respect {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 20px;
+            color: #d44c2f;
+            background: #fff0d4;
+            display: inline-block;
+            padding: 5px 35px;
+            border-radius: 40px;
+        }
+
+        /* ========== WISHING CARD WITH 15+ LINES ========== */
+        .wishing-card {
+            background: linear-gradient(145deg, #fff9f0, #fff2e0);
+            border-radius: 65px;
+            padding: 35px 30px;
+            margin: 45px 0;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+            border-left: 12px solid #ffaa66;
+            border-right: 12px solid #ffaa66;
+            transition: transform 0.3s;
+        }
+        .wishing-card:hover {
+            transform: scale(1.01);
+            background: #fffcf5;
+        }
+        .wishing-card h3 {
+            font-size: 2.3rem;
+            text-align: center;
+            color: #c0392b;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+        .wishing-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .wish-line {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #5e2a3e;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 6px 12px;
+            border-bottom: 1px dotted #ffc8a2;
+        }
+        .wish-line i {
+            font-size: 1.4rem;
+            color: #e67e22;
+            width: 32px;
+        }
+        .wish-line strong {
+            color: #b4452c;
+        }
+
+        /* Photo Gallery */
+        .gallery-master {
+            margin: 45px 0;
+        }
+        .gallery-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #aa2e4e;
+            margin-bottom: 30px;
+            border-bottom: 5px dotted #ffaa66;
+            display: inline-block;
+            width: auto;
+            padding-bottom: 12px;
+        }
+        .photo-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            margin: 35px 0;
+        }
+        .photo-card-respect {
+            background: white;
+            border-radius: 48px;
+            width: 250px;
+            overflow: hidden;
+            box-shadow: 0 25px 35px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            border: 3px solid gold;
+        }
+        .photo-card-respect:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 30px 45px rgba(0,0,0,0.3);
+        }
+        .photo-card-respect img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            background: #fcd5b5;
+        }
+        .photo-caption {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            background: #fffaf2;
+            font-size: 1rem;
+            color: #b3413a;
+        }
+        .replace-info {
+            text-align: center;
+            background: #ffe5ca;
+            width: fit-content;
+            margin: 0 auto 20px;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 35px 0;
+        }
+        .btn-glam {
+            background: linear-gradient(120deg, #ff416c, #ff4b2b);
+            border: none;
+            padding: 16px 38px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 12px 0 #7a2e3a;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-glam:active {
+            transform: translateY(5px);
+            box-shadow: 0 7px 0 #7a2e3a;
+        }
+        .btn-secondary {
+            background: linear-gradient(120deg, #f7b42c, #fc575e);
+            box-shadow: 0 12px 0 #a13e2f;
+        }
+
+        .footer-grand {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-top: 45px;
+            background: rgba(254, 218, 185, 0.8);
+            padding: 20px;
+            border-radius: 70px;
+            font-weight: 600;
+            color: #733c2c;
+        }
+
+        /* Floating Gifts & Hearts */
+        .floating-gift {
+            position: fixed;
+            bottom: -50px;
+            font-size: 2rem;
+            animation: riseGift 6s linear forwards;
+            pointer-events: none;
+            z-index: 999;
+        }
+        @keyframes riseGift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; bottom: -20px;}
+            100% { transform: translateY(-900px) rotate(20deg); opacity: 0;}
+        }
+
+        @media (max-width: 850px) {
+            .grand-container { padding: 25px 18px; margin: 15px; }
+            .hero-section h1 { font-size: 2.8rem; }
+            .hero-section h2 { font-size: 1.6rem; }
+            .message-block p { font-size: 1.2rem; }
+            .wish-line { font-size: 0.9rem; gap: 8px; }
+            .wishing-card h3 { font-size: 1.7rem; }
+            .photo-card-respect { width: 180px; }
+            .photo-card-respect img { height: 180px; }
+            .btn-glam { padding: 12px 24px; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sparkle-container" id="sparkleContainer"></div>
+<div class="balloon-area" id="balloonArea"></div>
+
+<div class="grand-container">
+    <div class="hero-section">
+        <h1>🎀 Happy Birthday Habiba 🎀</h1>
+        <h2>❤️ Janamdin Mubarak Ho Meri Jaan ❤️</h2>
+        <div class="bday-date-gold">
+            <i class="fas fa-calendar-alt"></i> 7 July 2011
+        </div>
+        <div class="age-special" id="ageDisplay">
+            ✨ Aap 15 saal ki ho gayi hain, meri zindagi ki roshni ✨
+        </div>
+    </div>
+
+    <div class="message-block">
+        <p>Pyaari Habiba, aap mere liye sabse khaas hain. Aapki muskaan meri duniya hai. ❤️<br>
+        Allah aapko hamesha khush rakhe, har sapna poora ho. Aapke bina sab adhoora hai.<br>
+        Iss khaas din par main dua karta hoon aap hamesha yunhi hansti rahein.</p>
+        <div class="signature-respect">
+            <i class="fas fa-heart"></i> Pyaar se, Aapka Arsh <i class="fas fa-heart"></i>
+        </div>
+    </div>
+
+    <div class="wishing-card">
+        <h3><i class="fas fa-envelope-open-text"></i> Habiba Ke Liye Special Wishes Card</h3>
+        <div class="wishing-list">
+            <div class="wish-line"><i class="fas fa-star"></i> <strong>1.</strong> Janamdin Mubarak ho meri jaan, aap duniya ki sabse khoobsurat rooh hain.</div>
+            <div class="wish-line"><i class="fas fa-heart"></i> <strong>2.</strong> Aapki har muskaan mere dil ko sukoon deti hai, hamesha hansti rehiye.</div>
+            <div class="wish-line"><i class="fas fa-crown"></i> <strong>3.</strong> Aap mere liye bohot khaas hain, aapki khushi ke liye main kuch bhi kar sakta hoon.</div>
+            <div class="wish-line"><i class="fas fa-sun"></i> <strong>4.</strong> Allah kare aapki har dua qubool ho, aur aap zindagi mein bulandiyon ko choo lein.</div>
+            <div class="wish-line"><i class="fas fa-gift"></i> <strong>5.</strong> Aapka saath mera sabse bada khazana hai, main dua karta hoon aap hamesha safe rahein.</div>
+            <div class="wish-line"><i class="fas fa-smile"></i> <strong>6.</strong> Aapki hansi jaise baharon ka mausam, mere dil ko khushi se bhar deti hai.</div>
+            <div class="wish-line"><i class="fas fa-feather-alt"></i> <strong>7.</strong> Aap mere andheron mein roshni ki tarah aayin, aapki wajah se main khush hoon.</div>
+            <div class="wish-line"><i class="fas fa-baloon"></i> <strong>8.</strong> Iss birthday par main aapko hazaaron khwabon ki udaan deta hoon, aap unhe poora karein.</div>
+            <div class="wish-line"><i class="fas fa-dove"></i> <strong>9.</strong> Dua hai aapki zindagi mein kabhi gam na aaye, aap har mushkil mein jeet jayein.</div>
+            <div class="wish-line"><i class="fas fa-champagne-glasses"></i> <strong>10.</strong> Aapki har subah nayi ummeed le aaye, aur har raat chain ki neend.</div>
+            <div class="wish-line"><i class="fas fa-hand-holding-heart"></i> <strong>11.</strong> Main aapko kabhi akela mehsoos nahi hone dunga, aap hamesha safe hain mere saath.</div>
+            <div class="wish-line"><i class="fas fa-infinity"></i> <strong>12.</strong> Humari dosti aur pyaar sadiyon tak qayam rahe, ye meri Allah se guzarish hai.</div>
+            <div class="wish-line"><i class="fas fa-seedling"></i> <strong>13.</strong> Aapki khwahishein aasmaan tak pahunchein, aur aap hamesha khushiyon se ghiri rahein.</div>
+            <div class="wish-line"><i class="fas fa-moon"></i> <strong>14.</strong> Chaand taare bhi aapko dekhkar muskurate hain, aap itni pyaari hain Habiba.</div>
+            <div class="wish-line"><i class="fas fa-heartbeat"></i> <strong>15.</strong> Aapki har dhadkan mein meri dua base, aap sehatmand aur khush rahein.</div>
+            <div class="wish-line"><i class="fas fa-sparkles"></i> <strong>16.</strong> Aap is duniya ki naimat hain, Arsh hamesha aapki kadar karega.</div>
+            <div class="wish-line"><i class="fas fa-birthday-cake"></i> <strong>17.</strong> Iss 15th birthday mein aapki zindagi rangon se bhari ho, aur aap khwabon ki udaan bhar lein.</div>
+            <div class="wish-line"><i class="fas fa-kiss-wink-heart"></i> <strong>18.</strong> Pyaar karne wala hamesha aapki duaon mein rahega. Happy Birthday Meri Jaan! 💖</div>
+        </div>
+    </div>
+
+    <div class="gallery-master">
+        <div style="text-align: center;">
+            <span class="gallery-title"><i class="fas fa-camera-retro"></i> Teri Khoobsurat Tasveerein</span>
+        </div>
+        <div class="replace-info">
+            <i class="fas fa-info-circle"></i> Arsh ne kaha: “Ye aapki special photos hain ❤️ (images replace karne ke liye img src change karein)”
+        </div>
+        <div class="photo-showcase" id="photoGrid">
+            <div class="photo-card-respect">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ffccd9'/%3E%3Ctext x='50%25' y='45%25' font-size='14' fill='%23b3413a' text-anchor='middle' dominant-baseline='middle'%3E📸 Habiba%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='12' fill='%23993355' text-anchor='middle'%3E❤️ Aapki Muskurahat%3C/text%3E%3C/svg%3E" alt="Habiba special">
+                <div class="photo-caption"><i class="fas fa-smile"></i> Aapki pyaari smile</div>
+            </div>
+            <div class="photo-card-respect">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ffe0b5'/%3E%3Ctext x='50%25' y='45%25' font-size='14' fill='%23c24130' text-anchor='middle'%3E🌸 Habiba 🌸%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='12' fill='%23823b2c' text-anchor='middle'%3EKhoobsurat Pal%3C/text%3E%3C/svg%3E" alt="Habiba moment">
+                <div class="photo-caption"><i class="fas fa-heart"></i> Dil se pyaari</div>
+            </div>
+            <div class="photo-card-respect">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23cfbaf0'/%3E%3Ctext x='50%25' y='45%25' font-size='14' fill='%236b2e5a' text-anchor='middle'%3E🎈 Celebration 🎈%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='12' fill='%235d3a4b' text-anchor='middle'%3EArsh &amp; Habiba%3C/text%3E%3C/svg%3E" alt="Habiba friendship">
+                <div class="photo-caption"><i class="fas fa-gem"></i> Special Bond</div>
+            </div>
+            <div class="photo-card-respect">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23fed7aa'/%3E%3Ctext x='50%25' y='45%25' font-size='14' fill='%23b45f2b' text-anchor='middle'%3E⭐️ Hamesha⭐️%3C/text%3E%3Ctext x='50%25' y='65%25' font-size='12' fill='%23944e2a' text-anchor='middle'%3EYaadein Pyari%3C/text%3E%3C/svg%3E" alt="Habiba cute">
+                <div class="photo-caption"><i class="fas fa-crown"></i> Meri Queen</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn-glam" id="confettiBtn"><i class="fas fa-glass-cheers"></i> Confetti Udayein 🎉</button>
+        <button class="btn-glam btn-secondary" id="sparkleBtn"><i class="fas fa-sparkle"></i> Sparkles & Hearts ✨</button>
+        <button class="btn-glam" id="balloonRainBtn"><i class="fas fa-baloon"></i> Fresh Balloons 🎈</button>
+    </div>
+
+    <div class="footer-grand">
+        <i class="fas fa-cake-candles"></i> 7 July 2011 - 15th Birthday Special <i class="fas fa-cake-candles"></i><br>
+        Arsh ki taraf se bepanah pyaar aur duaayein 🌹🌹<br>
+        <i class="fas fa-heart" style="color:#e91e63;"></i> Hamesha Khush Rahein Meri Habiba <i class="fas fa-heart" style="color:#e91e63;"></i>
+    </div>
+</div>
